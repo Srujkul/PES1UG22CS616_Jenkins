@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'g++ -o output PES1UG22CS616-1.cpp' // Compile the C++ file
+                    sh 'g++ -o output PES1UG22CS616.cpp' // Compile the C++ file
                 }
             }
         }
@@ -13,14 +13,14 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh './output' // Run the compiled executable
+                    sh './non_existing_file' // Intentional error: file does not exist
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying the application...' // Modify this step based on deployment needs
+                echo 'Deploying the application...' // This stage should be skipped if Test fails
             }
         }
     }
